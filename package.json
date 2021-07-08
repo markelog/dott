@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "eslint": "eslint src/**/*.ts",
+    "eslint:fix": "npm run eslint -- --fix",
+    "prettier": "prettier --ignore-path=.gitignore --check 'src/**/*.ts'",
+    "prettier:fix": "prettier --ignore-path=.gitignore --write 'src/**/*.ts'",
+    "lint": "npm run eslint && npm run prettier",
+    "lint:fix": "npm run eslint:fix && npm run prettier:fix",
+    "test": "npm run lint"
+  },
+  "devDependencies": {
+    "@tsconfig/node14": "^1.0.1",
+    "@types/node": "^16.0.1",
+    "@typescript-eslint/eslint-plugin": "^4.28.2",
+    "@typescript-eslint/parser": "^4.28.2",
+    "eslint": "^7.30.0",
+    "prettier": "^2.3.2",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.5"
+  }
+}
