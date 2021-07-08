@@ -6,7 +6,8 @@
     "prettier:fix": "prettier --ignore-path=.gitignore --write 'src/**/*.ts'",
     "lint": "npm run eslint && npm run prettier",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "dev": "ts-node src/index.ts"
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.1",
