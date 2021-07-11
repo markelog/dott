@@ -7,7 +7,8 @@
     "lint": "npm run eslint && npm run prettier",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
     "test": "npm run lint",
-    "dev": "ts-node src/index.ts"
+    "dev": "ts-node src/cli.ts",
+    "watch": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec npm run dev"
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.1",
