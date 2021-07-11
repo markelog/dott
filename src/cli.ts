@@ -35,7 +35,7 @@ const main = async () => {
 
   const d = new Dott(1)
 
-  d.read(p)
+  console.log(d.read(p).compute().results())
 
 };
 

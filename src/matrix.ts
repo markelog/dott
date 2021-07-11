@@ -1,7 +1,7 @@
 export interface MatrixInterface {
   add(data: number[]): boolean;
-  compute(): any;
-  data: number[][]
+  compute(): this;
+  results(): number[][]
 }
 
 export class Matrix implements MatrixInterface {
@@ -9,7 +9,7 @@ export class Matrix implements MatrixInterface {
   private cols: number;
   private filled: number;
   public data: number[][];
-  private results: number[][];
+  private result: number[][];
   private isComputed: boolean;
 
   constructor(rows: number, cols: number) {
@@ -17,7 +17,7 @@ export class Matrix implements MatrixInterface {
     this.filled = rows;
     this.cols = cols;
     this.data = [];
-    this.results = [];
+    this.result = [];
     this.isComputed = false;
   }
 
@@ -32,13 +32,46 @@ export class Matrix implements MatrixInterface {
     return this.filled !== 0;
   }
 
-  compute() {
+  compute(): this {
     if (this.isComputed) {
-      return this.results;
+      return this;
     }
+
+    for (let i = 0; i < this.data.length; i++) {
+      const current = this.data[i]
+      const result = []
+      for (let j = 0; j < current.length; j++) {
+        result.push(expand(current, j))
+      }
+
+      this.result.push(result)
+    }
+
+    this.isComputed = true;
+    return this
   }
 
-  getResults(): number[][] {
-    return this.results;
+  results(): number[][] {
+    return this.result;
   }
+}
+
+function expand(slice: number[], index: number): number {
+  let [left, right] = [index, index];
+  let distance = 0
+  while (left > -1 || right < slice.length) {
+    if (slice[left] === 1) {
+      return distance
+    }
+
+    if (slice[right] === 1) {
+      return distance
+    }
+
+    distance++;
+    left--
+    right++
+  }
+
+  return 0
 }

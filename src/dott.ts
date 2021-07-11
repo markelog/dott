@@ -1,25 +1,29 @@
 import { Matrix, MatrixInterface } from "./matrix";
 
-export interface DottInterface {}
+export interface DottInterface {
+  results(): number[][][];
+  read(data: number[][]): this;
+  compute(): this;
+}
 
 export class Dott implements DottInterface {
   private cases: number;
   private matrices: MatrixInterface[];
-  private results: number[];
+  private result: number[][][];
   private isComputed: boolean;
 
   constructor(cases: number) {
     this.cases = Number(cases);
     this.matrices = [];
-    this.results = [];
+    this.result = [];
     this.isComputed = false;
   }
 
-  getResults(): number[] {
-    return this.results;
+  results(): number[][][] {
+    return this.result;
   }
 
-  read(data: number[][]) {
+  read(data: number[][]): this {
     for (let i = 0; i < data.length; i++) {
       const rows = data[i][0];
       const cols = data[i][2];
@@ -33,19 +37,19 @@ export class Dott implements DottInterface {
       }
     }
 
-    console.log(this.matrices)
+    return this;
   }
 
-  compute() {
+  compute(): this {
     if (this.isComputed) {
-      return;
+      return this;
     }
 
     for (let i = 0; i < this.matrices.length; i++) {
-      const matrix = this.matrices[i];
-      matrix.compute();
+      this.result.push(this.matrices[i].compute().results());
     }
 
     this.isComputed = true;
+    return this
   }
 }
