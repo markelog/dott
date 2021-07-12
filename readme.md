@@ -1,4 +1,4 @@
-# Dott [![Coverage Status](https://coveralls.io/repos/github/markelog/dott/badge.svg?branch=main)](https://coveralls.io/github/markelog/dott?branch=main)
+# Dott [![CI](https://github.com/markelog/dott/actions/workflows/nodejs.yml/badge.svg)](https://github.com/markelog/dott/actions/workflows/nodejs.yml) [![Coverage Status](https://coveralls.io/repos/github/markelog/dott/badge.svg?branch=main)](https://coveralls.io/github/markelog/dott?branch=main)
 
 
 > Gets the distance to the nearest white pixel
