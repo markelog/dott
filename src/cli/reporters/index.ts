@@ -1,4 +1,5 @@
 import stdout from "./stdout";
+import json from "./json";
 
 type reporterSuccessType = (data: number[][][]) => void;
 type reporterErrorType = (err: Error, verbose: boolean) => void;
@@ -10,6 +11,7 @@ export type reporterType = {
 
 const reporters: { [unit: string]: reporterType } = {
   stdout,
+  json,
 };
 
 export default {

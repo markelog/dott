@@ -33,7 +33,11 @@ const argv = yargs(process.argv.slice(2))
   .usage(description)
   .version(version)
   .options({
-    reporter: { type: "string", default: "stdout" },
+    reporter: {
+      type: "string",
+      describe: "Possible reporters are: stdout, json",
+      default: "stdout",
+    },
     verbose: {
       type: "boolean",
       describe: "Add stacktrace to error output",
