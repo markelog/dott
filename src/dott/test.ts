@@ -10,26 +10,77 @@ describe("Dott Class", () => {
 
   describe("read()", () => {
     test("one matrix", () => {
-      const { matrices } = new Dott(1).read(data);
+      const { matrices } = new Dott(1)
+        .read(data[0])
+        .read(data[1])
+        .read(data[2])
+        .read(data[3]);
 
       expect(matrices).toHaveLength(1);
     });
 
     test("two matrices", () => {
-      const { matrices } = new Dott(2).read([...data, ...data]);
+      const { matrices } = new Dott(2)
+
+        // first matrix
+        .read(data[0])
+        .read(data[1])
+        .read(data[2])
+        .read(data[3])
+
+        // second one
+        .read(data[0])
+        .read(data[1])
+        .read(data[2])
+        .read(data[3]);
 
       expect(matrices).toHaveLength(2);
     });
 
     test("incorrect length", () => {
       expect(() => {
-        new Dott(2).read(data);
+        new Dott(1)
+
+          // first matrix
+          .read(data[0])
+          .read(data[1])
+          .read(data[2])
+          .read(data[3])
+
+          // second one
+          .read(data[0])
+          .read(data[1])
+          .read(data[2])
+          .read(data[3]);
       }).toThrow();
     });
   });
 
-  describe("compute()", () => {
+  describe("isFilled()", () => {
+    test("filled it with one matrix", () => {
+      const dott = new Dott(1)
+        .read(data[0])
+        .read(data[1])
+        .read(data[2])
+        .read(data[3]);
 
+      expect(dott.isFilled()).toBe(true);
+    });
+
+    test("if wasn't filled", () => {
+      const dott = new Dott(1);
+
+      expect(dott.isFilled()).toBe(false);
+    });
+
+    test("didn't fully filled the matrix ", () => {
+      const dott = new Dott(1).read(data[0]);
+
+      expect(dott.isFilled()).toBe(false);
+    });
+  });
+
+  describe("compute()", () => {
     test("basic case", () => {
       const expected = [
         [
@@ -39,7 +90,14 @@ describe("Dott Class", () => {
         ],
       ];
 
-      const results = new Dott(1).read(data).compute().results();
+      const results = new Dott(1)
+        .read(data[0])
+        .read(data[1])
+        .read(data[2])
+        .read(data[3])
+
+        .compute()
+        .results();
 
       expect(results).toStrictEqual(expected);
     });
@@ -53,14 +111,18 @@ describe("Dott Class", () => {
         ],
       ];
 
-      const dott = new Dott(1).read(data)
+      const dott = new Dott(1)
+        .read(data[0])
+        .read(data[1])
+        .read(data[2])
+        .read(data[3])
 
-      dott.compute()
-      dott.compute();
+        .compute()
+        .compute();
 
-      const results = dott.results()
+      const results = dott.results();
 
       expect(results).toStrictEqual(expected);
     });
-  })
+  });
 });

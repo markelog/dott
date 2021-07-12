@@ -49,7 +49,11 @@ export default class Matrix implements MatrixInterface {
       return this;
     }
 
-    assert.equal(this.data.length, this.rows, "there is not enough rows yet, add() more rows")
+    assert.equal(
+      this.data.length,
+      this.rows,
+      "there is not enough rows yet, add() more rows"
+    );
 
     for (let i = 0; i < this.rows; i++) {
       const current = this.data[i];

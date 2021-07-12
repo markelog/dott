@@ -4,8 +4,9 @@ import Matrix, { MatrixInterface } from "../matrix";
 
 export interface DottInterface {
   results(): number[][][];
-  read(data: number[][]): this;
+  read(data: number[]): this;
   compute(): this;
+  isFilled(): boolean;
   matrices: MatrixInterface[];
 }
 
@@ -26,27 +27,31 @@ export default class Dott implements DottInterface {
     return this.result;
   }
 
-  read(data: number[][]): this {
-    let cases = 0;
-    for (let i = 0; i < data.length; i++) {
-      const rows = data[i][0];
-      const cols = data[i][2];
-
-      const matrix = new Matrix(rows, cols);
-      this.matrices.push(matrix);
-      cases++;
-      i++;
-
-      while (!matrix.add(data[i]).isFilled()) {
-        i++;
-      }
+  isFilled(): boolean {
+    if (this.cases > this.matrices.length) {
+      return false;
     }
 
-    assert.equal(
-      this.cases,
-      cases,
+    const last = this.matrices[this.matrices.length - 1];
+    return last.isFilled();
+  }
+
+  read(data: number[]): this {
+    assert.ok(
+      this.cases >= this.matrices.length,
       "amount of passed and expected cases does not match"
     );
+
+    let matrix = this.matrices[this.matrices.length - 1];
+    if (matrix == null || matrix.isFilled()) {
+      const rows = data[0];
+      const cols = data[2];
+      matrix = new Matrix(rows, cols);
+      this.matrices.push(matrix);
+      return this;
+    }
+
+    matrix.add(data);
 
     return this;
   }

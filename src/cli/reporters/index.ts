@@ -1,6 +1,12 @@
 import stdout from "./stdout";
 
-type reporterType = (data: number[][][]) => void;
+type reporterSuccessType = (data: number[][][]) => void;
+type reporterErrorType = (err: Error, verbose: boolean) => void;
+
+export type reporterType = {
+  success: reporterSuccessType;
+  error: reporterErrorType;
+};
 
 const reporters: { [unit: string]: reporterType } = {
   stdout,

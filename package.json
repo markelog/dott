@@ -9,7 +9,8 @@
     "test": "npm run lint && npm run jest",
     "jest": "jest",
     "dev": "ts-node src/cli/index.ts",
-    "watch": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec npm run dev"
+    "build": "npx tsc",
+    "prepublishOnly": "NODE_ENV=production npm run build"
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.1",
