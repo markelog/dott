@@ -102,6 +102,31 @@ describe("Dott Class", () => {
       expect(results).toStrictEqual(expected);
     });
 
+    test("2x4 case", () => {
+      const input = [
+        [2, 0, 4],
+        [1, 0, 0, 0],
+        [0, 0, 0, 1],
+      ];
+
+      const expected = [
+        [
+          [0, 1, 2, 1],
+          [1, 2, 1, 0],
+        ],
+      ];
+
+      const results = new Dott(1)
+        .read(input[0])
+        .read(input[1])
+        .read(input[2])
+
+        .compute()
+        .results();
+
+      expect(results).toStrictEqual(expected);
+    });
+
     test("twice run", () => {
       const expected = [
         [

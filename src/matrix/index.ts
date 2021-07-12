@@ -1,5 +1,18 @@
 import assert from "assert";
 
+const directions = [
+  // up
+  [-1, 0],
+
+  // right
+  [0, 1],
+
+  // bottom
+  [1, 0],
+
+  // left
+  [0, -1],
+];
 export interface MatrixInterface {
   add(data: number[]): this;
   isFilled(): boolean;
@@ -19,14 +32,16 @@ export default class Matrix implements MatrixInterface {
     this.rows = rows;
     this.cols = cols;
     this.data = [];
-    this.result = [];
+    this.result = new Array(this.rows).fill(Infinity).map(() => {
+      return new Array(this.cols).fill(Infinity);
+    });
     this.isComputed = false;
   }
 
   add(data: number[]): this {
-    assert.equal(
-      this.cols,
+    assert.strictEqual(
       data.length,
+      this.cols,
       "amount of passed and expected columns does not match"
     );
 
@@ -49,47 +64,60 @@ export default class Matrix implements MatrixInterface {
       return this;
     }
 
-    assert.equal(
+    assert.strictEqual(
       this.data.length,
       this.rows,
       "there is not enough rows yet, add() more rows"
     );
 
-    for (let i = 0; i < this.rows; i++) {
-      const current = this.data[i];
-      const result = [];
-      for (let j = 0; j < this.cols; j++) {
-        result.push(expand(current, j));
+    const queue: number[][] = [];
+    this.data.forEach((row: number[], i: number) => {
+      row.forEach((pixel: number, j: number) => {
+        assert.ok(
+          pixel === 1 || pixel === 0,
+          "Pixel could be either white (value: 1) or black (value: 0)"
+        );
+
+        if (pixel === 1) {
+          queue.push([i, j, 0]);
+        }
+      });
+    });
+
+    while (queue.length > 0) {
+      const current = queue.shift();
+      const [row, col, distance] = current as [number, number, number];
+
+      if (distance < this.result[row][col]) {
+        this.result[row][col] = distance;
       }
 
-      this.result.push(result);
+      for (let i = 0; i < 4; i++) {
+        const newRow: number = row + directions[i][0];
+        const newCol: number = col + directions[i][1];
+
+        if (!this.canMove(newRow, newCol)) {
+          continue;
+        }
+
+        if (this.result[newRow][newCol] !== Infinity) {
+          continue;
+        }
+
+        this.result[newRow][newCol] = distance + 1;
+        queue.push([newRow, newCol, distance + 1]);
+      }
     }
 
     this.isComputed = true;
     return this;
   }
 
+  private canMove(rows: number, cols: number): boolean {
+    return rows > -1 && rows < this.rows && cols > -1 && cols < this.cols;
+  }
+
   results(): number[][] {
     return this.result;
   }
-}
-
-function expand(slice: number[], index: number): number {
-  let [left, right] = [index, index];
-  let distance = 0;
-  while (left > -1 || right < slice.length) {
-    if (slice[left] === 1) {
-      return distance;
-    }
-
-    if (slice[right] === 1) {
-      return distance;
-    }
-
-    distance++;
-    left--;
-    right++;
-  }
-
-  return 0;
 }

@@ -40,10 +40,32 @@ describe("Matrix Class", () => {
       [2, 1, 0, 0],
       [1, 0, 0, 1],
     ];
+
     test("basic case", () => {
       const matrix = new Matrix(3, 4);
 
       matrix.add(data[1]).add(data[2]).add(data[3]);
+
+      const results = matrix.compute().results();
+
+      expect(results).toStrictEqual(expected);
+    });
+
+    test("with one pixel", () => {
+      const data = [
+        [0, 0, 0],
+        [0, 1, 0],
+        [0, 1, 0],
+      ];
+
+      const expected = [
+        [2, 1, 2],
+        [1, 0, 1],
+        [1, 0, 1],
+      ];
+
+      const matrix = new Matrix(3, 3);
+      matrix.add(data[0]).add(data[1]).add(data[2]);
 
       const results = matrix.compute().results();
 
@@ -58,7 +80,7 @@ describe("Matrix Class", () => {
 
       const results = matrix.compute().results();
 
-      expect(results).toStrictEqual([[0, 0, 0, 0]]);
+      expect(results).toStrictEqual([[Infinity, Infinity, Infinity, Infinity]]);
     });
 
     test("twice run", () => {
