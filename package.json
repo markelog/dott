@@ -7,7 +7,7 @@
     "lint": "npm run eslint && npm run prettier",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
     "test": "npm run lint",
-    "dev": "ts-node src/cli.ts",
+    "dev": "ts-node src/cli/index.ts",
     "watch": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec npm run dev"
   },
   "devDependencies": {
@@ -19,5 +19,9 @@
     "prettier": "^2.3.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.5"
+  },
+  "dependencies": {
+    "@types/yargs": "^17.0.2",
+    "yargs": "^17.0.1"
   }
 }
