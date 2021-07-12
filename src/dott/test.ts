@@ -124,5 +124,59 @@ describe("Dott Class", () => {
 
       expect(results).toStrictEqual(expected);
     });
+
+    test("variations of the input", () => {
+      const input = [
+        [3, 0, 4],
+        [0, 0, 0, 1],
+        [0, 0, 1, 1],
+        [0, 1, 1, 0],
+
+        [2, 0, 2],
+        [0, 1],
+        [1, 0],
+
+        [2, 0, 2],
+        [1, 1],
+        [1, 1],
+
+        [3, 0, 4],
+        [1, 0, 0, 1],
+        [1, 0, 0, 1],
+        [1, 0, 0, 1],
+      ];
+
+      const expected = [
+        [
+          [3, 2, 1, 0],
+          [2, 1, 0, 0],
+          [1, 0, 0, 1],
+        ],
+
+        [
+          [1, 0],
+          [0, 1],
+        ],
+        [
+          [0, 0],
+          [0, 0],
+        ],
+        [
+          [0, 1, 1, 0],
+          [0, 1, 1, 0],
+          [0, 1, 1, 0],
+        ],
+      ];
+
+      const dott = new Dott(4);
+
+      input.forEach((data: number[]) => {
+        dott.read(data);
+      });
+
+      const results = dott.compute().results();
+
+      expect(results).toStrictEqual(expected);
+    });
   });
 });

@@ -73,5 +73,72 @@ describe("Matrix Class", () => {
 
       expect(results).toStrictEqual(expected);
     });
+
+    test("variations of the input", () => {
+      const fixtures = [
+        {
+          bitmap: [
+            [0, 0, 0, 1],
+            [0, 0, 1, 1],
+            [0, 1, 1, 0],
+          ],
+          expected: [
+            [3, 2, 1, 0],
+            [2, 1, 0, 0],
+            [1, 0, 0, 1],
+          ],
+        },
+        {
+          bitmap: [
+            [0, 0, 0, 1],
+            [0, 0, 1, 0],
+            [0, 1, 0, 0],
+          ],
+          expected: [
+            [3, 2, 1, 0],
+            [2, 1, 0, 1],
+            [1, 0, 1, 2],
+          ],
+        },
+        {
+          bitmap: [
+            [1, 1, 1, 1],
+            [1, 1, 1, 1],
+            [1, 1, 1, 1],
+          ],
+          expected: [
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+            [0, 0, 0, 0],
+          ],
+        },
+        {
+          bitmap: [
+            [1, 0, 0, 1],
+            [1, 0, 0, 1],
+            [1, 0, 0, 1],
+          ],
+          expected: [
+            [0, 1, 1, 0],
+            [0, 1, 1, 0],
+            [0, 1, 1, 0],
+          ],
+        },
+      ];
+
+      for (let i = 0; i < fixtures.length; i++) {
+        const matrix = new Matrix(3, 4);
+
+        const { bitmap, expected } = fixtures[i];
+
+        bitmap.forEach((data: number[]) => {
+          matrix.add(data);
+        });
+
+        const results = matrix.compute().results();
+
+        expect(results).toStrictEqual(expected);
+      }
+    });
   });
 });
