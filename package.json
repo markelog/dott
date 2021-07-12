@@ -24,7 +24,6 @@
     "jest:coverage": "npm run jest -- --coverage",
     "dev": "ts-node src/cli/index.ts",
     "build": "npx tsc",
-    "link": "NODE_ENV=production npm run build",
     "prepublishOnly": "NODE_ENV=production npm run build"
   },
   "devDependencies": {
