@@ -173,10 +173,20 @@ export default class Matrix implements MatrixInterface {
     return this;
   }
 
+  /**
+   * Determines whether we can move
+   * @param rows
+   * @param cols
+   * @returns true if can move
+   */
   private canMove(rows: number, cols: number): boolean {
     return rows > -1 && rows < this.rows && cols > -1 && cols < this.cols;
   }
 
+  /**
+   * Get computed results
+   * @returns results
+   */
   results(): number[][] {
     return this.result;
   }
