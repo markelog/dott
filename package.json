@@ -8,6 +8,9 @@
   "engines": {
     "node": ">=12"
   },
+  "bin": {
+    "dott": "dist/cli/index.js"
+  },
   "scripts": {
     "eslint": "eslint src/**/*.ts",
     "eslint:fix": "npm run eslint -- --fix",
@@ -21,6 +24,7 @@
     "jest:coverage": "npm run jest -- --coverage",
     "dev": "ts-node src/cli/index.ts",
     "build": "npx tsc",
+    "link": "NODE_ENV=production npm run build",
     "prepublishOnly": "NODE_ENV=production npm run build"
   },
   "devDependencies": {

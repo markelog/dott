@@ -9,6 +9,40 @@ There is given a rectangular bitmap of size n*m. Each pixel of the bitmap is eit
 black, but at least one is white. The pixel in i-th line and j-th column is called the pixel `(i,j)`. The
 distance between two pixels `p1=(i1,j1)` and `p2=(i2,j2)` is defined as `d(p1,p2)=|i1-i2|+|j1-j2|`.
 
+## Installation and Usage
+Prerequisites: [Node.js](https://nodejs.org/en/
+) (>=12.0.0)
+
+Clone the repo and enter the project directory and then:
+```bash
+$ npm install && npm run build && npm link
+```
+
+And now execute:
+
+```bash
+$ dott --help
+```
+to see what you can do with it, like (be aware that program will start in execution mode):
+
+```bash
+$ dott
+1
+3 4
+0001
+0011
+0110
+
+<Press Enter>
+
+3 2 1 0
+2 1 0 0
+1 0 0 1
+```
+
+
+```
+
 ## What it does
 
 * reads the description of the bitmap from the standard input;
@@ -30,17 +64,4 @@ In the i-th line for each test case, `1<=i<=n`, there should be written m intege
 separated by single spaces, where `f(i,j)` is the distance from the pixel `(i,j)` to the nearest white
 pixel.
 
-## Example
 
-```bash
-$ dott
-1
-3 4
-0001
-0011
-0110
-
-3 2 1 0
-2 1 0 0
-1 0 0 1
-```

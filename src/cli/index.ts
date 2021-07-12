@@ -4,16 +4,41 @@ import Dott from "../dott";
 import reporters, { reporterType } from "./reporters";
 import * as readline from "readline";
 import yargs from "yargs/yargs";
+import chalk from "chalk";
 
 /* eslint-disable @typescript-eslint/no-var-requires */
 const { version } = require("../../package.json");
 
+const description = `
+${chalk.blue("Usage")}: dott [options]
+
+${chalk.green("Program starts in interactive mode.")}
+
+Example:
+
+$ dott
+1
+3 4
+0001
+0011
+0110
+
+<Press Enter>
+
+3 2 1 0
+2 1 0 0
+1 0 0 1`;
+
 const argv = yargs(process.argv.slice(2))
-  .usage("Usage: $0 --reporter=console <data>")
+  .usage(description)
   .version(version)
   .options({
     reporter: { type: "string", default: "stdout" },
-    verbose: { type: "boolean", default: false },
+    verbose: {
+      type: "boolean",
+      describe: "Add stacktrace to error output",
+      default: false,
+    },
   })
   .parseSync();
 
