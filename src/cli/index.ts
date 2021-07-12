@@ -5,9 +5,12 @@ import reporters, { reporterType } from "./reporters";
 import * as readline from "readline";
 import yargs from "yargs/yargs";
 
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { version } = require("../../package.json");
+
 const argv = yargs(process.argv.slice(2))
   .usage("Usage: $0 --reporter=console <data>")
-  .version("0.0.1")
+  .version(version)
   .options({
     reporter: { type: "string", default: "stdout" },
     verbose: { type: "boolean", default: false },

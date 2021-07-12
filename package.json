@@ -1,4 +1,11 @@
 {
+  "name": "dott",
+  "version": "0.0.2",
+  "description": "just some test stuff",
+  "private": "this is a test playground so we don't need to publish it",
+  "private": true,
+  "author": "Oleg \"Who's got the Courvoisi'\" Gaidarenko",
+  "license": "MIT",
   "scripts": {
     "eslint": "eslint src/**/*.ts",
     "eslint:fix": "npm run eslint -- --fix",
