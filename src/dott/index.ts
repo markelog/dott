@@ -11,13 +11,12 @@ export interface DottInterface {
 }
 
 /**
- * This is the main class which encapsulates logic behind the matrices computations.
- * This a basic decorator class
+ * This is the main (decorator) class which encapsulates logic behind the matrices computations
  * @class
  */
 export default class Dott implements DottInterface {
   /**
-   * How many cases can we have?
+   * How many do can we have?
    */
   private cases: number;
 
@@ -38,7 +37,7 @@ export default class Dott implements DottInterface {
 
   /**
    * Creates an instance of dott
-   * @param cases how many cases can we have?
+   * @param cases how many do can we have?
    */
   constructor(cases: number) {
     this.cases = Number(cases);

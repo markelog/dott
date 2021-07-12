@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import Dott from "../dott";
 import reporters, { reporterType } from "./reporters";
 import * as readline from "readline";
@@ -78,7 +80,7 @@ const main = async () => {
 
     dott.read(data);
 
-    // When we filled the dott immediately proceed to next instructions
+    // When we filled the dott - immediately proceed to next instructions
     if (dott.isFilled()) {
       break;
     }
