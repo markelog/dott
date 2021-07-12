@@ -11,7 +11,7 @@ function success(data: number[][][]) {
     }
 
     if (i + 1 !== data.length) {
-      console.log()
+      console.log();
     }
   }
 }
