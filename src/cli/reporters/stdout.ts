@@ -9,6 +9,10 @@ function success(data: number[][][]) {
     for (let j = 0; j < current.length; j++) {
       console.log(current[j].join(" "));
     }
+
+    if (i + 1 !== data.length) {
+      console.log()
+    }
   }
 }
 
