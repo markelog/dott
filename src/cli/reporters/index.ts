@@ -9,7 +9,7 @@ const reporters: { [unit: string]: reporterType } = {
 export default {
   get: (name: string): reporterType => {
     if (reporters[name] == null) {
-      throw new Error(`Reporter ${name} doesn't exist`);
+      throw new Error(`Reporter "${name}" doesn't exist`);
     }
 
     return reporters[name];

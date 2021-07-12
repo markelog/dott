@@ -4,8 +4,11 @@ import { Dott, DottInterface } from "../dott";
 import reporters from "./reporters";
 import * as readline from "readline";
 import yargs from "yargs/yargs";
+import chalk from "chalk";
 
 const argv = yargs(process.argv.slice(2))
+  .usage("Usage: $0 --reporter=console <data>")
+  .version("0.0.1")
   .options({
     reporter: { type: "string", default: "stdout" },
   })
@@ -43,9 +46,14 @@ const main = async () => {
 
   const d = new Dott(2);
 
-  const reporter = reporters.get(argv.reporter);
+  try {
+    const reporter = reporters.get(argv.reporter);
+    reporter(d.read(p).compute().results());
 
-  reporter(d.read(p).compute().results());
+  } catch (err) {
+    console.error(`${chalk.bold.red("Error")}: ${err.message}`);
+    process.exit(1)
+  }
 };
 
 main();
