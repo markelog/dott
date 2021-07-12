@@ -56,7 +56,9 @@ $ dott
 
 ### Approach
 
-We use bfs coupled with a bit of maze path finding algo without backtracking though, at least this is how I explained to myself, haha. See [Distance transform](https://en.wikipedia.org/wiki/Distance_transform
+We use bfs coupled with a bit of maze path finding algo without backtracking though, at least this is how I explained it to myself, haha.
+
+See [Distance transform](https://en.wikipedia.org/wiki/Distance_transform
  ) article.
 
 ### Task
