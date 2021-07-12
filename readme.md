@@ -19,12 +19,13 @@ Clone the repo and enter the project directory and then:
 $ npm install && npm run build && npm link
 ```
 
-And now execute:
+And now execute help to see what you can do with it:
 
 ```bash
 $ dott --help
 ```
-to see what you can do with it, like (be aware that program will start in execution mode):
+
+Be aware that usually program will start in execution mode. Like:
 
 ```bash
 $ dott
@@ -42,6 +43,7 @@ $ dott
 ```
 
 ## Details
+
 ### Task
 
 There is given a rectangular bitmap of size n\*m. Each pixel of the bitmap is either white or
