@@ -43,3 +43,8 @@ jobs:
         uses: coverallsapp/github-action@master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+      - name: refresh coverage badge
+        uses: fjogeleit/http-request-action@master
+        with:
+          url: https://camo.githubusercontent.com/203a206fe152f76d281918a03c064096e72d6566289e7ea653b16d59d33c746f/68747470733a2f2f636f766572616c6c732e696f2f7265706f732f6769746875622f6d61726b656c6f672f646f74742f62616467652e7376673f6272616e63683d6d61696e
+          method: PURGE
