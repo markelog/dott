@@ -51,7 +51,7 @@ describe("Matrix Class", () => {
       expect(results).toStrictEqual(expected);
     });
 
-    test("with one pixel", () => {
+    test.only("with one pixel", () => {
       const data = [
         [0, 0, 0],
         [0, 1, 0],
@@ -68,6 +68,8 @@ describe("Matrix Class", () => {
       matrix.add(data[0]).add(data[1]).add(data[2]);
 
       const results = matrix.compute().results();
+
+      console.log(results);
 
       expect(results).toStrictEqual(expected);
     });
@@ -86,10 +88,13 @@ describe("Matrix Class", () => {
     test("twice run", () => {
       const matrix = new Matrix(3, 4);
 
-      matrix.add(data[1]).add(data[2]).add(data[3]);
+      matrix
+        .add(data[1])
+        .add(data[2])
+        .add(data[3])
 
-      matrix.compute();
-      matrix.compute();
+        .compute()
+        .compute();
 
       const results = matrix.results();
 
