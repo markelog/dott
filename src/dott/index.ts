@@ -1,15 +1,18 @@
-import { Matrix, MatrixInterface } from "./matrix";
+import assert from "assert/strict";
+
+import Matrix, { MatrixInterface } from "../matrix";
 
 export interface DottInterface {
   results(): number[][][];
   read(data: number[][]): this;
   compute(): this;
+  matrices: MatrixInterface[];
 }
 
 export class Dott implements DottInterface {
   private cases: number;
-  private matrices: MatrixInterface[];
-  private result: number[][][];
+  readonly matrices: MatrixInterface[];
+  readonly result: number[][][];
   private isComputed: boolean;
 
   constructor(cases: number) {
@@ -24,18 +27,22 @@ export class Dott implements DottInterface {
   }
 
   read(data: number[][]): this {
+    let cases = 0;
     for (let i = 0; i < data.length; i++) {
       const rows = data[i][0];
       const cols = data[i][2];
 
       const matrix = new Matrix(rows, cols);
       this.matrices.push(matrix);
+      cases++;
       i++;
 
       while (matrix.add(data[i])) {
         i++;
       }
     }
+
+    assert.equal(this.cases, cases, "amount of passed and expected cases does not match");
 
     return this;
   }
@@ -50,6 +57,6 @@ export class Dott implements DottInterface {
     }
 
     this.isComputed = true;
-    return this
+    return this;
   }
 }

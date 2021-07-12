@@ -1,20 +1,21 @@
+import assert from "assert/strict";
+
 export interface MatrixInterface {
   add(data: number[]): boolean;
   compute(): this;
-  results(): number[][]
+  results(): number[][];
+  data: number[][];
 }
 
-export class Matrix implements MatrixInterface {
+export default class Matrix implements MatrixInterface {
   private rows: number;
   private cols: number;
-  private filled: number;
-  public data: number[][];
+  readonly data: number[][];
   private result: number[][];
   private isComputed: boolean;
 
   constructor(rows: number, cols: number) {
     this.rows = rows;
-    this.filled = rows;
     this.cols = cols;
     this.data = [];
     this.result = [];
@@ -22,14 +23,20 @@ export class Matrix implements MatrixInterface {
   }
 
   add(data: number[]): boolean {
-    if (this.filled === 0) {
-      return false;
-    }
+    assert.equal(
+      this.cols,
+      data.length,
+      "amount of passed and expected columns does not match"
+    );
+
+    assert.ok(
+      this.rows >= this.data.length + 1,
+      "amount of passed and expected rows does not match"
+    );
 
     this.data.push(data);
-    this.filled--;
 
-    return this.filled !== 0;
+    return this.data.length !== this.rows
   }
 
   compute(): this {
@@ -37,18 +44,18 @@ export class Matrix implements MatrixInterface {
       return this;
     }
 
-    for (let i = 0; i < this.data.length; i++) {
-      const current = this.data[i]
-      const result = []
-      for (let j = 0; j < current.length; j++) {
-        result.push(expand(current, j))
+    for (let i = 0; i < this.rows; i++) {
+      const current = this.data[i];
+      const result = [];
+      for (let j = 0; j < this.cols; j++) {
+        result.push(expand(current, j));
       }
 
-      this.result.push(result)
+      this.result.push(result);
     }
 
     this.isComputed = true;
-    return this
+    return this;
   }
 
   results(): number[][] {
@@ -58,20 +65,20 @@ export class Matrix implements MatrixInterface {
 
 function expand(slice: number[], index: number): number {
   let [left, right] = [index, index];
-  let distance = 0
+  let distance = 0;
   while (left > -1 || right < slice.length) {
     if (slice[left] === 1) {
-      return distance
+      return distance;
     }
 
     if (slice[right] === 1) {
-      return distance
+      return distance;
     }
 
     distance++;
-    left--
-    right++
+    left--;
+    right++;
   }
 
-  return 0
+  return 0;
 }

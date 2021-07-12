@@ -6,17 +6,21 @@
     "prettier:fix": "prettier --ignore-path=.gitignore --write 'src/**/*.ts'",
     "lint": "npm run eslint && npm run prettier",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
-    "test": "npm run lint",
+    "test": "npm run lint && npm run jest",
+    "jest": "jest",
     "dev": "ts-node src/cli/index.ts",
     "watch": "nodemon --watch 'src/**' --ext 'ts,json' --ignore 'src/**/*.spec.ts' --exec npm run dev"
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.1",
+    "@types/jest": "^26.0.24",
     "@types/node": "^16.0.1",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "eslint": "^7.30.0",
+    "jest": "^27.0.6",
     "prettier": "^2.3.2",
+    "ts-jest": "^27.0.3",
     "ts-node": "^10.0.0",
     "typescript": "^4.3.5"
   },
