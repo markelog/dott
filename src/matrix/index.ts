@@ -1,4 +1,4 @@
-import assert from "assert/strict";
+import assert from "assert";
 
 export interface MatrixInterface {
   add(data: number[]): this;
