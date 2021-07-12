@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { Dott } from "../dott/index";
+import Dott from "../dott";
 import reporters from "./reporters";
 import * as readline from "readline";
 import yargs from "yargs/yargs";

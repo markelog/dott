@@ -9,7 +9,7 @@ export interface DottInterface {
   matrices: MatrixInterface[];
 }
 
-export class Dott implements DottInterface {
+export default class Dott implements DottInterface {
   private cases: number;
   readonly matrices: MatrixInterface[];
   readonly result: number[][][];
@@ -37,7 +37,7 @@ export class Dott implements DottInterface {
       cases++;
       i++;
 
-      while (matrix.add(data[i])) {
+      while (!matrix.add(data[i]).isFilled()) {
         i++;
       }
     }

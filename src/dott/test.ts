@@ -1,4 +1,4 @@
-import { Dott } from ".";
+import Dott from ".";
 
 describe("Dott Class", () => {
   const data = [

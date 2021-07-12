@@ -1,7 +1,8 @@
 import assert from "assert/strict";
 
 export interface MatrixInterface {
-  add(data: number[]): boolean;
+  add(data: number[]): this;
+  isFilled(): boolean;
   compute(): this;
   results(): number[][];
   data: number[][];
@@ -22,7 +23,7 @@ export default class Matrix implements MatrixInterface {
     this.isComputed = false;
   }
 
-  add(data: number[]): boolean {
+  add(data: number[]): this {
     assert.equal(
       this.cols,
       data.length,
@@ -36,13 +37,19 @@ export default class Matrix implements MatrixInterface {
 
     this.data.push(data);
 
-    return this.data.length !== this.rows;
+    return this;
+  }
+
+  isFilled(): boolean {
+    return this.data.length === this.rows;
   }
 
   compute(): this {
     if (this.isComputed) {
       return this;
     }
+
+    assert.equal(this.data.length, this.rows, "there is not enough rows yet, add() more rows")
 
     for (let i = 0; i < this.rows; i++) {
       const current = this.data[i];
