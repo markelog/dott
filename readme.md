@@ -3,11 +3,21 @@
 
 > Gets the distance to the nearest white pixel
 
-## What it does
+## What It Does
 
 - reads the description of the bitmap from the standard input;
 - for each pixel, computes the distance to the nearest white;
 - writes the results to the standard output.
+
+
+## Table of Contents
+
+1. [Installation and Usage](#installation-and-usage
+)
+1. [Approach](#approach)
+1. [Task](#Task)
+1. [Input](#input)
+1. [Output](#output)
 
 ## Installation and Usage
 
