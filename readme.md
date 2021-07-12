@@ -44,6 +44,10 @@ $ dott
 
 ## Details
 
+## Approach
+
+We use bfs coupled with a bit of maze path finding algo without backtracking though, at least this is how I explained to myself, haha. See (Distance transform)[https://en.wikipedia.org/wiki/Distance_transform
+] article.
 ### Task
 
 There is given a rectangular bitmap of size n\*m. Each pixel of the bitmap is either white or
