@@ -36,7 +36,7 @@ export default class Matrix implements MatrixInterface {
 
     this.data.push(data);
 
-    return this.data.length !== this.rows
+    return this.data.length !== this.rows;
   }
 
   compute(): this {

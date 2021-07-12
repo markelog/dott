@@ -1,7 +1,6 @@
 import { Dott } from ".";
 
 describe("Dott Class", () => {
-
   const data = [
     [3, 0, 4],
     [0, 0, 0, 1],
@@ -11,7 +10,7 @@ describe("Dott Class", () => {
 
   describe("read()", () => {
     test("one datum", () => {
-      const {matrices} = new Dott(1).read(data)
+      const { matrices } = new Dott(1).read(data);
 
       expect(matrices).toHaveLength(1);
     });

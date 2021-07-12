@@ -42,7 +42,11 @@ export class Dott implements DottInterface {
       }
     }
 
-    assert.equal(this.cases, cases, "amount of passed and expected cases does not match");
+    assert.equal(
+      this.cases,
+      cases,
+      "amount of passed and expected cases does not match"
+    );
 
     return this;
   }

@@ -19,8 +19,8 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-let dott: Dott | null = null;
-let pump: number[][] = [];
+const dott: Dott | null = null;
+const pump: number[][] = [];
 
 const main = async () => {
   // for await (const line of rl) {
@@ -49,10 +49,9 @@ const main = async () => {
   try {
     const reporter = reporters.get(argv.reporter);
     reporter(d.read(p).compute().results());
-
   } catch (err) {
     console.error(`${chalk.bold.red("Error")}: ${err.message}`);
-    process.exit(1)
+    process.exit(1);
   }
 };
 
