@@ -9,13 +9,13 @@ describe("Dott Class", () => {
   ];
 
   describe("read()", () => {
-    test("one datum", () => {
+    test("one matrix", () => {
       const { matrices } = new Dott(1).read(data);
 
       expect(matrices).toHaveLength(1);
     });
 
-    test("two data", () => {
+    test("two matrices", () => {
       const { matrices } = new Dott(2).read([...data, ...data]);
 
       expect(matrices).toHaveLength(2);
@@ -27,4 +27,40 @@ describe("Dott Class", () => {
       }).toThrow();
     });
   });
+
+  describe("compute()", () => {
+
+    test("basic case", () => {
+      const expected = [
+        [
+          [3, 2, 1, 0],
+          [2, 1, 0, 0],
+          [1, 0, 0, 1],
+        ],
+      ];
+
+      const results = new Dott(1).read(data).compute().results();
+
+      expect(results).toStrictEqual(expected);
+    });
+
+    test("twice run", () => {
+      const expected = [
+        [
+          [3, 2, 1, 0],
+          [2, 1, 0, 0],
+          [1, 0, 0, 1],
+        ],
+      ];
+
+      const dott = new Dott(1).read(data)
+
+      dott.compute()
+      dott.compute();
+
+      const results = dott.results()
+
+      expect(results).toStrictEqual(expected);
+    });
+  })
 });
