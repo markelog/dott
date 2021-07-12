@@ -2,10 +2,12 @@
   "name": "dott",
   "version": "0.0.2",
   "description": "just some test stuff",
-  "private": "this is a test playground so we don't need to publish it",
   "private": true,
-  "author": "Oleg \"Who's got the Courvoisi'\" Gaidarenko",
+  "author": "Oleg \"Who's got the Courvoisi'?!\" Gaidarenko",
   "license": "MIT",
+  "engines": {
+    "node": ">=16"
+  },
   "scripts": {
     "eslint": "eslint src/**/*.ts",
     "eslint:fix": "npm run eslint -- --fix",
@@ -14,17 +16,20 @@
     "lint": "npm run eslint && npm run prettier",
     "lint:fix": "npm run eslint:fix && npm run prettier:fix",
     "test": "npm run lint && npm run jest",
+    "test:ci": "npm run lint && npm run jest:coverage && cat ./coverage/lcov.info | coveralls",
     "jest": "jest",
+    "jest:coverage": "npm run jest -- --coverage",
     "dev": "ts-node src/cli/index.ts",
     "build": "npx tsc",
     "prepublishOnly": "NODE_ENV=production npm run build"
   },
   "devDependencies": {
-    "@tsconfig/node14": "^1.0.1",
+    "@tsconfig/node16": "^1.0.1",
     "@types/jest": "^26.0.24",
     "@types/node": "^16.0.1",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
+    "coveralls": "^3.1.1",
     "eslint": "^7.30.0",
     "jest": "^27.0.6",
     "prettier": "^2.3.2",
