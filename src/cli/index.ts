@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 import Dott from "../dott";
 import reporters, { reporterType } from "./reporters";
 import * as readline from "readline";
