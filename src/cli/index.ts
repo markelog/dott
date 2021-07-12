@@ -53,8 +53,8 @@ let dott: Dott | null = null;
 let reporter: reporterType;
 
 const main = async () => {
-  // If we can't find the reporter, we can't only report this to "stdout" reporter
-  // which always should be present and be a default
+  // If we can't find the reporter, we can't only report this to "stdout"
+  // which is always should be present default
   try {
     reporter = reporters.get(argv.reporter);
   } catch (err) {

@@ -148,10 +148,10 @@ export default class Matrix implements MatrixInterface {
         this.result[row][col] = distance;
       }
 
-      // Now this is very similar to the maze path finding algos.
+      // Now this is very similar to the maze pathfinding algos.
       // We check what we have all around us - in every direction.
       // First we check all the white pixels than we put the black ones in the queue
-      // as well, but initiate their distances not with zeros (how we do it for the white ones), but with increamented distance from the nearest white pixel, than we do the same for their children, than for grandchildren and etc
+      // as well, but initiate their distances not with zeros (how we do it for the white ones), but with incremented distance from the nearest white pixel, than we do the same for their children, than for grandchildren and etc
       for (let i = 0; i < 4; i++) {
         const newRow: number = row + directions[i][0];
         const newCol: number = col + directions[i][1];

@@ -22,7 +22,7 @@ export default class Dott implements DottInterface {
   private cases: number;
 
   /**
-   * aggregates all the matrices in the game
+   * Aggregates all the matrices in the game
    */
   readonly matrices: MatrixInterface[];
 
@@ -32,7 +32,7 @@ export default class Dott implements DottInterface {
   private result: number[][][];
 
   /**
-   * Is results computed yet?
+   * Are the results computed yet?
    */
   private isComputed: boolean;
 
