@@ -1,6 +1,6 @@
 {
   "name": "dott",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Gets the distance to the nearest white pixel",
   "private": true,
   "author": "Oleg \"Who's got the Courvoisi'?!\" Gaidarenko",
